@@ -2,7 +2,7 @@ const db = require('../db')
 
 class TaskTestController {
 
-    // CREATE TEST
+    
     async createTest(req, res) {
         try {
 
@@ -37,7 +37,7 @@ class TaskTestController {
         }
     }
 
-    // GET TESTS FOR TASK
+    
     async getTestsByTask(req, res) {
         try {
 
@@ -57,7 +57,7 @@ class TaskTestController {
         }
     }
 
-    // UPDATE TEST
+    
     async updateTest(req, res) {
         try {
 
@@ -94,7 +94,7 @@ class TaskTestController {
         }
     }
 
-    // DELETE TEST
+    
     async deleteTest(req, res) {
         try {
 

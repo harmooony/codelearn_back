@@ -2,27 +2,32 @@ const db = require('../db')
 
 class CourseController {
 
-    // CREATE
-    async createCourse(req, res) {
-        try {
-            const { title, description, price, creator_id, status, language_id } = req.body
+    
+async createCourse(req, res) {
+    try {
+        const { title, description, price, language_id } = req.body;
+        
+        
+        const authHeader = req.headers.authorization;
+        const token = authHeader.split(' ')[1];
+        const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+        const creator_id = payload.id; 
 
-            const newCourse = await db.query(
-                `INSERT INTO courses 
-                (title, description, price, creator_id, status, language_id) 
-                VALUES ($1, $2, $3, $4, $5, $6) 
-                RETURNING *`,
-                [title, description, price, creator_id, status, language_id]
-            )
+        
+        const newCourse = await db.query(
+            `INSERT INTO courses (title, description, price, creator_id, language_id) 
+             VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+            [title, description, price || 0, creator_id, language_id]
+        );
 
-            res.json(newCourse.rows[0])
-
-        } catch (e) {
-            res.status(500).json(e.message)
-        }
+        res.json(newCourse.rows[0]);
+    } catch (e) {
+        console.error("ОШИБКА DB:", e);
+        res.status(500).json({ message: 'Ошибка при создании курса', error: e.message });
     }
+}
 
-    // READ ALL (с нормальными названиями)
+    
     async getCourses(req, res) {
         try {
 
@@ -57,7 +62,7 @@ class CourseController {
         }
     }
 
-    // READ ONE
+    
     async getOneCourse(req, res) {
         try {
 
@@ -94,7 +99,7 @@ class CourseController {
         }
     }
 
-    // UPDATE
+    
     async updateCourse(req, res) {
         try {
 
@@ -137,7 +142,7 @@ class CourseController {
         }
     }
 
-    // DELETE
+    
     async deleteCourse(req, res) {
         try {
 

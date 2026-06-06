@@ -2,7 +2,7 @@ const db = require('../db')
 
 class TaskController {
 
-    // CREATE TASK
+    
     async createTask(req, res) {
         try {
 
@@ -40,7 +40,7 @@ class TaskController {
         }
     }
 
-    // GET TASKS FOR LESSON
+    
     async getTasksByLesson(req, res) {
 
         const lessonId = req.params.lessonId
@@ -54,7 +54,7 @@ class TaskController {
         res.json(tasks.rows[0])
     }
 
-    // UPDATE TASK
+    
     async updateTask(req, res) {
         try {
 
@@ -94,7 +94,7 @@ class TaskController {
         }
     }
 
-    // DELETE TASK
+    
     async deleteTask(req, res) {
         try {
 

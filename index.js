@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 app.use(cors({
-  origin: 'http://127.0.0.1:5173', // разрешаем запросы только с вашего клиентского порта
+  origin: 'http://127.0.0.1:5173',
   optionsSuccessStatus: 200
 }));
 
@@ -55,6 +55,7 @@ app.use('/api', taskTestRouter)
 app.use('/api', authRouter)
 app.use('/api', favoriteRouter)
 app.use('/api', subscriptionRouter)
+app.use('/api', require('./routes/language.routes'));
 
 
 

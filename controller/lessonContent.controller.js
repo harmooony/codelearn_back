@@ -2,7 +2,7 @@ const db = require('../db')
 
 class LessonContentController {
 
-    // CREATE CONTENT
+    
     async createContent(req, res) {
         try {
 
@@ -30,7 +30,7 @@ class LessonContentController {
         }
     }
 
-    // GET CONTENT BY LESSON
+    
     async getContentByLesson(req, res) {
         try {
 
@@ -65,7 +65,7 @@ class LessonContentController {
         }
     }
 
-    // UPDATE CONTENT
+    
     async updateContent(req, res) {
         try {
 
@@ -99,7 +99,7 @@ class LessonContentController {
         }
     }
 
-    // DELETE CONTENT
+    
     async deleteContent(req, res) {
         try {
 
